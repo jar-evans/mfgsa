@@ -29,12 +29,10 @@ k = length(w);
 % see   B. Peherstorfer & K. Willcox, Optimal Model Management for
 %       Multifidelity Monte Carlo Estimation, SISC 2016
 temp = (stats.rho.^2 - [stats.rho(2:end); 0].^2);
-r = w(1)*temp./(w*(1-stats.rho(2)^2));
-r = sqrt(r);
+r = sqrt(w(1)*temp./(w*(1-stats.rho(2)^2)));
 m1 = p/(w'*r);
 m  = floor(m1*r);
 alpha = stats.rho*stats.sigma(1)./stats.sigma;
-
 
 delta = stats.delta;
 tau = stats.tau;

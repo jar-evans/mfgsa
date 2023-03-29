@@ -36,7 +36,7 @@ budget = 2000;   % define computational budget
 
 % if analytical statistics are not available, estimate them. otherwise load
 % true statistics from file
-estimate = false;   
+estimate = true;   
 if estimate
     n_estimate = 100;
     stats = estimate_statistics(fcns,n_estimate);
@@ -45,13 +45,15 @@ else
 end
 
 
+
+
 %% COMPUTE MULTIFIDELITY GLOBAL SENSITIVITY ANALYSIS REPLICATES
 n_reps = 100;    % number of replicates 
 avg   = zeros(n_reps,2);    vr    = zeros(n_reps,2);
 mc_sm = zeros(n_reps,d);    mc_st = zeros(n_reps,d);
 mf_sm = zeros(n_reps,d);    mf_st = zeros(n_reps,d);
 
-method = 'Gamboa';
+method = 'Saltelli';
 
 for n = 1:n_reps
     

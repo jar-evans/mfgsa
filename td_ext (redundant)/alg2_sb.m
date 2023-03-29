@@ -3,7 +3,7 @@ import PCE_methods.*; import general.*;
 
 %% set time grid
 T = 10;
-dt = .01;
+dt = .1;
 N_quad = int64(T/dt) + 1; %length(0:dt:T); % NOTE: should i change N_quad to
                                            % number of intervals and then
                                            % introduce new var N_points
@@ -12,7 +12,7 @@ N_quad = int64(T/dt) + 1; %length(0:dt:T); % NOTE: should i change N_quad to
 input_ranges = [0.25 1.25 0.5];
 input_means = [0.5 25/8 -1];
 
-N_p = 3; grid_h = 0.2; % N = 1000;
+N_p = 3; grid_h = 0.1;  N = 100;
 
 [U, N] = general.generate_legendre_samples(grid_h, N_p);
 % [U, N] = general.generate_legendre_samples(grid_h, N_p, N); 
@@ -31,6 +31,8 @@ N_ord = 4;
 % proj_matrix = PCE_methods.generate_projection_matrix(basis_index, U, N_p, N_PC, N_PC_quad);
 % coefficients = PCE_methods.calculate_PCE_coefficients(proj_matrix, fc);
 
+[new_U, ~] = general.generate_legendre_samples(0, 3, 100);
+generate_realisations(mean_process, coefficients, basis_index, U);
 
 %% check approximations
 y = PCE_methods.generate_approximation(proj_matrix, coefficients);
